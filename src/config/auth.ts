@@ -1,15 +1,9 @@
-import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
-import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
-import bcrypt from 'bcrypt';
-import { UserModel } from '../database/models/user';
 import dotenv from 'dotenv';
 import { Request, Response } from 'express';
 import * as jwt from "jsonwebtoken";
 dotenv.config();
 
 const secret_key: any = process.env.ACCESS_TOKEN_SECRET
-
 
 export async function verifyToken(req:any, res:any, next:any) {
     const token = req.headers['authorization'];
@@ -22,13 +16,12 @@ export async function verifyToken(req:any, res:any, next:any) {
         if(err){
             return res.status(401).json({message: "Unauthorized: Invalid token"});
         }
-
         req.user = decoded;
         next();
     }) 
 }
 
-
+//Function checks if the user authorized - By JWT access token
 export async function checkAuthorized(req:Request, res: Response){
     //To get accessToken if user is authorized
     const authorizationHeader = req.headers.authorization;
