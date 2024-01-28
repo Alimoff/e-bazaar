@@ -2,12 +2,16 @@ import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from 'http-status-codes';
 import { Category } from "../types/common";
 import { CategoryModel } from "../database/models/category";
+import { checkAuthorized } from "../config/auth";
 
 export class CategoryController {
     //METHOD POST
     //Create product
     public async create (req:Request, res: Response, next: NextFunction){
         try{
+            //Function to check if user is authorized
+            checkAuthorized(req,res);
+
         const { name, description} = req.body;
 
         const isExist = await CategoryModel.find({name});
@@ -32,6 +36,9 @@ export class CategoryController {
     //METHOD PUT
     public async update (req: Request, res: Response, next: NextFunction) {
         try {
+            //Function to check if user is authorized
+            checkAuthorized(req,res);
+
             const id = req.params;
             const { name, description } = req.body;
 
@@ -55,8 +62,10 @@ export class CategoryController {
        //METHOD DELETE
        public async delete (req: Request, res: Response, next: NextFunction) {
         try {
-            const id = req.params;
+            //Function to check if user is authorized
+             checkAuthorized(req,res);
 
+            const id = req.params;
             const category = await CategoryModel.findOneAndDelete({_id:id})
  
             category?.save();
@@ -86,6 +95,9 @@ export class CategoryController {
 
     public async get (req:Request, res: Response, next: NextFunction) {
         try{
+
+            checkAuthorized(req,res);
+
             const id = req.body._id;
 
             const categories = CategoryModel.findOne({_id: id});
