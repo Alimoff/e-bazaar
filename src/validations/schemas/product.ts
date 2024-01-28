@@ -1,21 +1,19 @@
 import * as yup from 'yup';
 
 export const createProductValidation = yup.object({
-    email:yup.string().required(),
-    name:yup.string().required(),
-    surname:yup.string().required(),
-    password:yup.string().required()
+    product:yup.string().required(),
+    price:yup.string().required(),
+    amount:yup.string(),
+    image:yup.string(),
+    category: yup.string().required(),
+    description: yup.string()
 });
 
-export const logInValidationSchema = yup.object({
-    email:yup.string().required(),
-    password:yup.string().required()
-});
-
-export const logOutValidationSchema = yup.object({
-    email:yup.string().required()
-});
-
-export const refreshTokenValidationSchema = yup.object({
-    refreshToken: yup.string().required(),
-});
+export const updateProductValidation = yup.object({
+    product:yup.string(),
+    price:yup.string(),
+    amount:yup.string(),
+    image:yup.string(),
+    category: yup.string(),
+    description: yup.string()
+})
