@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { AuthController } from '../controller/authController';
-import {requireSuperadmin, validate} from "../middlewares/validate";
+import {RequireUserTypes, validate} from "../middlewares/validate";
 import {
     signUpValidationSchema,
     logInValidationSchema,
@@ -9,14 +9,15 @@ import {
 } from "../validations/schemas/auth";
 
 
-const authRouter = Router()
-const controller = new AuthController()
+const authRouter = Router();
+const controller = new AuthController();
+const userType = new RequireUserTypes();
 
 authRouter.post('/signup',validate(signUpValidationSchema), controller.signup);
 authRouter.post('/signin', validate(logInValidationSchema), controller.signin);
-authRouter.get("/users",controller.getAllUsers);
+authRouter.get("/users",userType.requireAdmin, controller.getAllUsers);
 authRouter.post('/signout', validate(logOutValidationSchema), controller.signout)
-authRouter.post('/create-admin', validate(signUpValidationSchema), controller.createAdmin);
+authRouter.post('/create-admin',userType.requireAdmin, validate(signUpValidationSchema), controller.createAdmin);
 
 // authRouter.post(
 //     "/refresh-token",
