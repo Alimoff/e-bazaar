@@ -8,11 +8,12 @@ import {
     refreshTokenValidationSchema
 } from "../validations/schemas/auth";
 
+
 const authRouter = Router()
 const controller = new AuthController()
 
 authRouter.post('/signup',validate(signUpValidationSchema), controller.signup);
-authRouter.post('/signin', validate(logInValidationSchema),controller.signin);
+authRouter.post('/signin', validate(logInValidationSchema), controller.signin);
 authRouter.get("/users",controller.getAllUsers);
 authRouter.post('/signout', validate(logOutValidationSchema), controller.signout)
 authRouter.post('/create-admin', validate(signUpValidationSchema), controller.createAdmin);

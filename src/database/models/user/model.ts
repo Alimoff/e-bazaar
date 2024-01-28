@@ -14,7 +14,6 @@ const userSchema = new Schema<Partial<IUser>>(
     },
     phoneNumber: {
         type:String,
-        required:true,
         unique:true
     },
     email:{

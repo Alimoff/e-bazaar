@@ -19,6 +19,7 @@ export enum GENDER {
     ALL = "ALL",
 }
 
+
 export enum Category {
     ELECTRONICS = 'electronics',
     CLOTHES = 'clothes',
@@ -29,6 +30,7 @@ export enum Category {
     HOUSEHOLD_ITEMS = 'household_items',
     OFFICE_EQUIPMENT = 'office_equipment',
     OTHER = 'other',
+    find = "find"
 }
 
 export type MultiLanguageName = {

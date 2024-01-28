@@ -20,6 +20,7 @@ const productSchema = new Schema<Partial<IProduct>>(
     owner: {
         type: SchemaTypes.ObjectId,
         ref: 'User',
+        required: true,
     },
     category : {
         type: SchemaTypes.ObjectId,
