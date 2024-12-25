@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { authRouter } from './authRoutes';
 import {productRouter} from './productRoutes';
-import {categoryRouter} from './categoryRoutes';
+import { customerRouter } from './customerRoutes';
+import { shoppingRouter } from './shoppingRepo';
 
 export const router = Router();
 //API for auth
-router.use("/api", authRouter);
 router.use("/api", productRouter);
-router.use("/api", categoryRouter);
+router.use("/api", customerRouter);
+router.use("/api", shoppingRouter);
