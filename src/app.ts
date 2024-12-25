@@ -8,11 +8,12 @@ import passport from 'passport';
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import * as path from 'path'; 
 dotenv.config();
 
 
 
-import { UserModel } from './database/models/user';
+import { CustomerModel } from './database/models/customer';
 
 const app: Application = express();
 
@@ -32,7 +33,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 //registretion router
 app.use(router);
-
+app.use('/static', express.static(path.join(__dirname, '../', '/static')));
+ 
 //regiteriation cokies
 app.use(cokierPreser());
 

@@ -29,8 +29,7 @@ export enum Category {
     FOOD_AND_BEVERAGE = 'food_and_beverage',
     HOUSEHOLD_ITEMS = 'household_items',
     OFFICE_EQUIPMENT = 'office_equipment',
-    OTHER = 'other',
-    find = "find"
+    OTHER = 'other'
 }
 
 export type MultiLanguageName = {

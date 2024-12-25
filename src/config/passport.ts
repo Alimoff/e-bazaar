@@ -7,7 +7,6 @@ dotenv.config();
 
 const secretKey: any = process.env.ACCESS_TOKEN_SECRET;
 
-
 function authenticateAndAuthorize(req: Request, res: Response, next: NextFunction) {
     const token = req.headers['authorization'];
   
