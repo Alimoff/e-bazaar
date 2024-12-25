@@ -1,5 +1,6 @@
 import {model,Schema,SchemaTypes} from 'mongoose';
 import { IProduct } from './types';
+import { Category } from '../../../types/common';
 
 const productSchema = new Schema<Partial<IProduct>>(
     {
@@ -11,25 +12,22 @@ const productSchema = new Schema<Partial<IProduct>>(
         type:String,
         required:true,
             },
-    amount:{
+    quantity:{
         type:Number,
+        default: 1
     },
     image:{
-        type:String
-    },
-    owner: {
-        type: SchemaTypes.ObjectId,
-        ref: 'User',
-        required: true,
-    },
-    category : {
-        type: SchemaTypes.ObjectId,
-        ref: "Category",
-        required: true,
+        type:String,
+        required: true
     },
     description:{
         type:String
     },
+    available: Boolean,
+    category: {
+        type:String,
+        default: Category.OTHER
+    }
     
 });
 

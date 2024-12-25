@@ -1,15 +1,15 @@
 import {Document,ObjectId} from 'mongoose';
-import { CategoryDocument } from '../category';
+import { Category  } from '../../../types/common';
 
 export interface IProduct {
     _id:ObjectId |string;
     product:string;
     price:string;
-    amount?:number;
-    image?:string;
-    owner: ObjectId | string;
-    category:CategoryDocument;
+    quantity:number;
+    image:string;
     description?:string;
+    available: Boolean;
+    category: Category;
 }
 
 export type ProductDocument = Document & IProduct;
